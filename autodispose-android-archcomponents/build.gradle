@@ -42,6 +42,9 @@ android {
     sourceCompatibility JavaVersion.VERSION_1_7
     targetCompatibility JavaVersion.VERSION_1_7
   }
+  testOptions {
+    execution 'ANDROID_TEST_ORCHESTRATOR'
+  }
 }
 
 dependencies {
@@ -62,11 +65,11 @@ dependencies {
   androidTestCompile project(':test-utils')
   androidTestCompile deps.test.androidRunner
   androidTestCompile deps.test.androidRules
+  androidTestUtil deps.test.androidOrchestrator
 }
 
 tasks.withType(JavaCompile) {
-  options.compilerArgs += ["-Xep:NullAway:ERROR",
-                           "-XepOpt:NullAway:AnnotatedPackages=com.uber"]
+  options.compilerArgs += ["-Xep:NullAway:ERROR", "-XepOpt:NullAway:AnnotatedPackages=com.uber"]
 }
 
 // Disable for now until we're ready to release this

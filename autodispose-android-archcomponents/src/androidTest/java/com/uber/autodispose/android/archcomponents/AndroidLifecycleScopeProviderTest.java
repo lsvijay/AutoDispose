@@ -20,7 +20,6 @@ import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.support.test.annotation.UiThreadTest;
-import android.support.test.rule.UiThreadTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 import com.uber.autodispose.LifecycleEndedException;
@@ -29,7 +28,6 @@ import com.uber.autodispose.ObservableScoper;
 import com.uber.autodispose.test.RecordingObserver;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.subjects.PublishSubject;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -42,8 +40,6 @@ import static com.google.common.truth.Truth.assertThat;
       Log.d(AndroidLifecycleScopeProviderTest.class.getSimpleName(), message);
     }
   };
-
-  @Rule public UiThreadTestRule uiThreadTestRule = new UiThreadTestRule();
 
   @Test @UiThreadTest public void observable_normal() {
     final RecordingObserver<Integer> o = new RecordingObserver<>(LOGGER);
